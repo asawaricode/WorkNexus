@@ -194,16 +194,16 @@ async function main() {
       'Kamble', 'Bhosale', 'Kadam', 'Tambe', 'Salvi', 'Desai', 'Gawde', 'Mhatre', 'Shetty', 'Shinde'
     ];
 
-    // Seed system users exactly to maintain compatibility with existing logins
+    // Seed system users with strictly partitioned prefixes (AD for Admin, SUP for Supervisor, EMP for Worker)
     const baseUsers = [
-      { employeeId: 'ADMIN001', firstName: 'System', lastName: 'Admin', mobile: '9000000001', email: 'systemadmin@workforce.com', role: 'Admin', subRole: null, passwordHash: defaultPasswordHash },
-      { employeeId: 'EMP-1042', firstName: 'Admin', lastName: 'User', mobile: '9876543210', email: 'admin@workforce.com', role: 'Admin', subRole: null, passwordHash: defaultPasswordHash },
+      { employeeId: 'AD001', firstName: 'System', lastName: 'Admin', mobile: '9000000001', email: 'systemadmin@workforce.com', role: 'Admin', subRole: null, passwordHash: defaultPasswordHash },
+      { employeeId: 'AD002', firstName: 'Admin', lastName: 'User', mobile: '9876543210', email: 'admin@workforce.com', role: 'Admin', subRole: null, passwordHash: defaultPasswordHash },
+      { employeeId: 'SUP001', firstName: 'Vikram', lastName: 'Singh', mobile: '9876543224', email: 'vikram@workforce.com', role: 'Supervisor', subRole: null, passwordHash: defaultPasswordHash },
+      { employeeId: 'SUP002', firstName: 'Kavita', lastName: 'Reddy', mobile: '9876543225', email: 'kavita@workforce.com', role: 'Supervisor', subRole: null, passwordHash: defaultPasswordHash },
       { employeeId: 'EMP-2001', firstName: 'Anita', lastName: 'Sharma', mobile: '9876543211', email: 'anita@workforce.com', role: 'Worker', subRole: 'Skilled', passwordHash: defaultPasswordHash },
       { employeeId: 'EMP-1990', firstName: 'Harshada', lastName: 'Amrolkar', mobile: '4548512121', email: 'harshada@workforce.com', role: 'Worker', subRole: 'Skilled', passwordHash: defaultPasswordHash },
       { employeeId: 'EMP-2003', firstName: 'Saloni', lastName: 'More', mobile: '7852446876', email: 'saloni@workforce.com', role: 'Worker', subRole: 'Trainee', passwordHash: defaultPasswordHash },
       { employeeId: 'EMP-2002', firstName: 'Samarth', lastName: 'Anandrao', mobile: '7258945612', email: 'samarth@workforce.com', role: 'Worker', subRole: 'Trainee', passwordHash: defaultPasswordHash },
-      { employeeId: 'MGR001', firstName: 'Kavita', lastName: 'Reddy', mobile: '9876543225', email: 'kavita@workforce.com', role: 'Supervisor', subRole: null, passwordHash: defaultPasswordHash },
-      { employeeId: 'SUPER001', firstName: 'Vikram', lastName: 'Singh', mobile: '9876543224', email: 'vikram@workforce.com', role: 'Supervisor', subRole: null, passwordHash: defaultPasswordHash },
     ];
 
     const users = [];
@@ -363,7 +363,7 @@ async function main() {
     // 6. Generate 1,500 Activity Logs spanning the last 1 year
     console.log('Generating 1,500 historical Activity Logs for analysis...');
     const activityLogsToCreate = 1500;
-    const workerUsers = users.filter(u => u.employeeId !== 'ADMIN001' && u.employeeId !== 'EMP-1042'); // Workers only
+    const workerUsers = users.filter(u => u.employeeId.startsWith('EMP')); // Workers only
 
     // Pre-calculate date range blocks
     const totalDays = 365;

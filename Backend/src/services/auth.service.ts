@@ -32,12 +32,14 @@ export class AuthService {
 
     // Map common aliases for ease of access
     let targetEmployeeId = employeeId;
-    if (['supervisor', 'super', 'sup-101', 'sup101', 'vikram'].includes(normalizedId)) {
-      targetEmployeeId = 'SUPER001';
-    } else if (['mgr001', 'manager', 'kavita'].includes(normalizedId)) {
-      targetEmployeeId = 'MGR001';
-    } else if (['admin', 'admin001', 'systemadmin'].includes(normalizedId)) {
-      targetEmployeeId = 'ADMIN001';
+    if (['supervisor', 'super', 'sup-101', 'sup101', 'sup001', 'vikram'].includes(normalizedId)) {
+      targetEmployeeId = 'SUP001';
+    } else if (['sup002', 'manager', 'kavita'].includes(normalizedId)) {
+      targetEmployeeId = 'SUP002';
+    } else if (['admin', 'ad001', 'admin001', 'systemadmin'].includes(normalizedId)) {
+      targetEmployeeId = 'AD001';
+    } else if (['ad002', 'adminuser', 'emp-1042'].includes(normalizedId)) {
+      targetEmployeeId = 'AD002';
     }
 
     // Try case-insensitive search by employeeId
