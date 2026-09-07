@@ -317,11 +317,11 @@ export const Login: React.FC = () => {
                 </Typography>
                 <Typography variant="body2" sx={{ color: '#0F172A', fontWeight: 600 }}>
                   Skilled ID: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>EMP-2001</Box>
-                  &nbsp;➔ Password: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>ANI211</Box>
+                  &nbsp;➔ Password: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>ANI1198</Box>
                 </Typography>
                 <Typography variant="body2" sx={{ color: '#0F172A', fontWeight: 600 }}>
                   Trainee ID: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>EMP-2003</Box>
-                  &nbsp;➔ Password: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>SAL876</Box>
+                  &nbsp;➔ Password: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>SAL1601</Box>
                 </Typography>
               </Box>
 

@@ -213,8 +213,8 @@ export const Login: React.FC = () => {
               {/* Sample Credentials Box */}
               <Box
                 onClick={() => {
-                  setSupervisorId('SUPER001');
-                  setPassword('VIK224');
+                  setSupervisorId('SUP001');
+                  setPassword('VIK1496');
                 }}
                 sx={{
                   mb: 3,
@@ -242,10 +242,12 @@ export const Login: React.FC = () => {
                   </Typography>
                 </Box>
                 <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>
-                  Supervisor ID: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>SUPER001</Box>
+                  Primary ID: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>SUP001</Box>
+                  &nbsp;➔ Password: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>VIK1496</Box>
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.primary', fontWeight: 600 }}>
-                  Password: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>VIK224</Box>
+                  Secondary ID: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>SUP002</Box>
+                  &nbsp;➔ Password: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>KAV2295</Box>
                 </Typography>
               </Box>
 

@@ -368,10 +368,12 @@ export const Login: React.FC = () => {
                   Demo Credentials
                 </Typography>
                 <Typography variant="body2" sx={{ color: colors.textDark, fontWeight: 600 }}>
-                  Admin ID: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>EMP-1042</Box>
+                  Primary Admin ID: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>AD001</Box>
+                  &nbsp;➔ Password: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>admin@123</Box>
                 </Typography>
                 <Typography variant="body2" sx={{ color: colors.textDark, fontWeight: 600 }}>
-                  Password: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>ADM210</Box>
+                  Secondary Admin ID: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>AD002</Box>
+                  &nbsp;➔ Password: <Box component="span" sx={{ fontFamily: 'monospace', bgcolor: 'rgba(0,0,0,0.05)', px: 0.8, py: 0.2, borderRadius: '4px', fontWeight: 800 }}>admin@456</Box>
                 </Typography>
               </Box>
 
