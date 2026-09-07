@@ -168,47 +168,35 @@ async function main() {
     }
     console.log(`Seeded ${dbDepts.length} departments and ${dbActs.length} activities.`);
 
-    // 4. Seed 100 Employees
-    console.log('Generating Base Employees...');
-    const defaultPasswordHash = await bcrypt.hash('Admin@123', 10);
-    const passHashGeneral = await bcrypt.hash('password123', 10);
+    // 4. Seed 100 Employees with custom formulas
+    console.log('Generating 100 Employees...');
+    const passAD001 = await bcrypt.hash('admin@123', 10);
+    const passAD002 = await bcrypt.hash('admin@456', 10);
 
-    const firstNames = [
-      'Rajesh', 'Amit', 'Priya', 'Sunita', 'Suhas', 'Bharat', 'Satish', 'Shashikant', 'Sagar', 'Sanket',
-      'Tejas', 'Shashank', 'Sanjay', 'Dinesh', 'Vishvajit', 'Anita', 'Harshada', 'Saloni', 'Samarth', 'Kavita',
-      'Vikram', 'Ramesh', 'Suresh', 'Vijay', 'Rahul', 'Sunil', 'Anil', 'Ganesh', 'Mahesh', 'Karan',
-      'Arjun', 'Ajay', 'Deepak', 'Sandeep', 'Ravi', 'Manoj', 'Pradeep', 'Prakash', 'Ashok', 'Kishor',
-      'Dilip', 'Sudhir', 'Vivek', 'Nitin', 'Abhay', 'Prashant', 'Sachin', 'Sandeep', 'Jitendra', 'Vikash',
-      'Aarti', 'Pooja', 'Neha', 'Jyoti', 'Kiran', 'Swati', 'Monika', 'Sneha', 'Rupali', 'Deepali',
-      'Santosh', 'Yogesh', 'Amol', 'Sandip', 'Pravin', 'Sachin', 'Chetan', 'Akash', 'Mayur', 'Prasad',
-      'Nikhil', 'Rohit', 'Siddharth', 'Aditya', 'Abhishek', 'Varun', 'Aniket', 'Kunal', 'Darshan', 'Gaurav',
-      'Harshal', 'Tushar', 'Vaibhav', 'Omkar', 'Sarang', 'Chinmay', 'Sourabh', 'Anant', 'Swapnil', 'Dnyaneshwar'
-    ];
-
-    const lastNames = [
-      'Kumar', 'Patel', 'Sharma', 'Rao', 'Balip', 'Jadhav', 'Rane', 'Gupta', 'Pawar', 'Manchekar',
-      'Dhukhande', 'Mapankar', 'Parab', 'Shigwan', 'Lingayat', 'Amrolkar', 'More', 'Anandrao', 'Reddy', 'Singh',
-      'Deshmukh', 'Patil', 'Joshi', 'Kulkarni', 'Chavan', 'Shinde', 'Sawant', 'Suryavanshi', 'Naik', 'Mane',
-      'Kamble', 'Bhosale', 'Kadam', 'Tambe', 'Salvi', 'Desai', 'Gawde', 'Mhatre', 'Shetty', 'Shinde'
-    ];
-
-    // Seed system users with strictly partitioned prefixes (AD for Admin, SUP for Supervisor, EMP for Worker)
+    // Seed system users with strictly partitioned prefixes and distinct credentials
     const baseUsers = [
-      { employeeId: 'AD001', firstName: 'System', lastName: 'Admin', mobile: '9000000001', email: 'systemadmin@workforce.com', role: 'Admin', subRole: null, passwordHash: defaultPasswordHash },
-      { employeeId: 'AD002', firstName: 'Admin', lastName: 'User', mobile: '9876543210', email: 'admin@workforce.com', role: 'Admin', subRole: null, passwordHash: defaultPasswordHash },
-      { employeeId: 'SUP001', firstName: 'Vikram', lastName: 'Singh', mobile: '9876543224', email: 'vikram@workforce.com', role: 'Supervisor', subRole: null, passwordHash: defaultPasswordHash },
-      { employeeId: 'SUP002', firstName: 'Kavita', lastName: 'Reddy', mobile: '9876543225', email: 'kavita@workforce.com', role: 'Supervisor', subRole: null, passwordHash: defaultPasswordHash },
-      { employeeId: 'EMP-2001', firstName: 'Anita', lastName: 'Sharma', mobile: '9876543211', email: 'anita@workforce.com', role: 'Worker', subRole: 'Skilled', passwordHash: defaultPasswordHash },
-      { employeeId: 'EMP-1990', firstName: 'Harshada', lastName: 'Amrolkar', mobile: '4548512121', email: 'harshada@workforce.com', role: 'Worker', subRole: 'Skilled', passwordHash: defaultPasswordHash },
-      { employeeId: 'EMP-2003', firstName: 'Saloni', lastName: 'More', mobile: '7852446876', email: 'saloni@workforce.com', role: 'Worker', subRole: 'Trainee', passwordHash: defaultPasswordHash },
-      { employeeId: 'EMP-2002', firstName: 'Samarth', lastName: 'Anandrao', mobile: '7258945612', email: 'samarth@workforce.com', role: 'Worker', subRole: 'Trainee', passwordHash: defaultPasswordHash },
+      { employeeId: 'AD001', firstName: 'System', lastName: 'Admin', mobile: '9000000001', email: 'systemadmin@workforce.com', role: 'Admin', subRole: null, password: 'admin@123', passwordHash: passAD001 },
+      { employeeId: 'AD002', firstName: 'Admin', lastName: 'User', mobile: '9876543210', email: 'admin@workforce.com', role: 'Admin', subRole: null, password: 'admin@456', passwordHash: passAD002 },
+      { employeeId: 'SUP001', firstName: 'Vikram', lastName: 'Singh', mobile: '9876543224', email: 'vikram@workforce.com', role: 'Supervisor', subRole: null, dobDay: '14', dobYear: '96' }, // VIK1496
+      { employeeId: 'SUP002', firstName: 'Kavita', lastName: 'Reddy', mobile: '9876543225', email: 'kavita@workforce.com', role: 'Supervisor', subRole: null, dobDay: '22', dobYear: '95' }, // KAV2295
+      { employeeId: 'EMP-2001', firstName: 'Anita', lastName: 'Sharma', mobile: '9876543211', email: 'anita@workforce.com', role: 'Worker', subRole: 'Skilled', dobDay: '11', dobYear: '98' }, // ANI1198
+      { employeeId: 'EMP-1990', firstName: 'Harshada', lastName: 'Amrolkar', mobile: '4548512121', email: 'harshada@workforce.com', role: 'Worker', subRole: 'Skilled', dobDay: '25', dobYear: '97' }, // HAR2597
+      { employeeId: 'EMP-2003', firstName: 'Saloni', lastName: 'More', mobile: '7852446876', email: 'saloni@workforce.com', role: 'Worker', subRole: 'Trainee', dobDay: '16', dobYear: '01' }, // SAL1601
+      { employeeId: 'EMP-2002', firstName: 'Samarth', lastName: 'Anandrao', mobile: '7258945612', email: 'samarth@workforce.com', role: 'Worker', subRole: 'Trainee', dobDay: '09', dobYear: '00' }, // SAM0900
     ];
 
     const users = [];
+    const usedPasswords = new Set(['admin@123', 'admin@456']);
 
     // Create base users
     for (const bu of baseUsers) {
-      const passwordHash = bu.passwordHash;
+      let formulaPassword = bu.password;
+      if (!formulaPassword) {
+        const namePart = (bu.firstName.trim().split(' ')[0] || '').substring(0, 3).toUpperCase();
+        formulaPassword = `${namePart}${bu.dobDay}${bu.dobYear}`;
+      }
+      usedPasswords.add(formulaPassword);
+      const passwordHash = bu.passwordHash || (await bcrypt.hash(formulaPassword, 10));
 
       const dbUser = await prisma.user.create({
         data: {
@@ -228,8 +216,84 @@ async function main() {
       users.push(dbUser);
     }
 
-    console.log(`Successfully generated ${users.length} total users in DB.`);
-    console.log(`Successfully generated ${users.length} total users in DB.`);
+    // Generate remainder of 100 users (92 extra users)
+    const firstNames = [
+      'Rajesh', 'Amit', 'Priya', 'Sunita', 'Suhas', 'Bharat', 'Satish', 'Shashikant', 'Sagar', 'Sanket',
+      'Tejas', 'Shashank', 'Sanjay', 'Dinesh', 'Vishvajit', 'Anita', 'Harshada', 'Saloni', 'Samarth', 'Kavita',
+      'Vikram', 'Ramesh', 'Suresh', 'Vijay', 'Rahul', 'Sunil', 'Anil', 'Ganesh', 'Mahesh', 'Karan',
+      'Arjun', 'Ajay', 'Deepak', 'Sandeep', 'Ravi', 'Manoj', 'Pradeep', 'Prakash', 'Ashok', 'Kishor',
+      'Dilip', 'Sudhir', 'Vivek', 'Nitin', 'Abhay', 'Prashant', 'Sachin', 'Sandeep', 'Jitendra', 'Vikash',
+      'Aarti', 'Pooja', 'Neha', 'Jyoti', 'Kiran', 'Swati', 'Monika', 'Sneha', 'Rupali', 'Deepali',
+      'Santosh', 'Yogesh', 'Amol', 'Sandip', 'Pravin', 'Sachin', 'Chetan', 'Akash', 'Mayur', 'Prasad',
+      'Nikhil', 'Rohit', 'Siddharth', 'Aditya', 'Abhishek', 'Varun', 'Aniket', 'Kunal', 'Darshan', 'Gaurav',
+      'Harshal', 'Tushar', 'Vaibhav', 'Omkar', 'Sarang', 'Chinmay', 'Sourabh', 'Anant', 'Swapnil', 'Dnyaneshwar'
+    ];
+
+    const lastNames = [
+      'Kumar', 'Patel', 'Sharma', 'Rao', 'Balip', 'Jadhav', 'Rane', 'Gupta', 'Pawar', 'Manchekar',
+      'Dhukhande', 'Mapankar', 'Parab', 'Shigwan', 'Lingayat', 'Amrolkar', 'More', 'Anandrao', 'Reddy', 'Singh',
+      'Deshmukh', 'Patil', 'Joshi', 'Kulkarni', 'Chavan', 'Shinde', 'Sawant', 'Suryavanshi', 'Naik', 'Mane',
+      'Kamble', 'Bhosale', 'Kadam', 'Tambe', 'Salvi', 'Desai', 'Gawde', 'Mhatre', 'Shetty', 'Shinde'
+    ];
+
+    const mobileSet = new Set(baseUsers.map(u => u.mobile));
+    const empIdSet = new Set(baseUsers.map(u => u.employeeId));
+
+    let createdExtra = 0;
+    while (createdExtra < 92) {
+      const fName = firstNames[createdExtra % firstNames.length];
+      const lName = lastNames[Math.floor(Math.random() * lastNames.length)];
+      
+      const numPart = String(2004 + createdExtra).padStart(4, '0');
+      const employeeId = `EMP-${numPart}`;
+      const mobile = `987${Math.floor(1000000 + Math.random() * 9000000)}`;
+
+      if (mobileSet.has(mobile) || empIdSet.has(employeeId)) {
+        continue; // Prevent duplicates
+      }
+      mobileSet.add(mobile);
+      empIdSet.add(employeeId);
+
+      const subRoleVal = Math.random() > 0.35 ? 'Skilled' : 'Trainee';
+
+      // Formula: first 3 letters of name + 2-digit birthdate + 2-digit birth year
+      const namePart = (fName.trim().split(' ')[0] || '').substring(0, 3).toUpperCase();
+      let day = (createdExtra % 28) + 1;
+      let year = 1985 + ((createdExtra * 3) % 19);
+      let dayStr = String(day).padStart(2, '0');
+      let yearStr = String(year).slice(-2);
+      let formulaPassword = `${namePart}${dayStr}${yearStr}`;
+
+      // Ensure every password across the entire company is distinct
+      while (usedPasswords.has(formulaPassword)) {
+        day = ((day + 3) % 28) + 1;
+        year = 1985 + ((year + 1) % 19);
+        dayStr = String(day).padStart(2, '0');
+        yearStr = String(year).slice(-2);
+        formulaPassword = `${namePart}${dayStr}${yearStr}`;
+      }
+      usedPasswords.add(formulaPassword);
+
+      const passwordHash = await bcrypt.hash(formulaPassword, 10);
+
+      const dbUser = await prisma.user.create({
+        data: {
+          employeeId,
+          firstName: fName,
+          lastName: lName,
+          mobile,
+          email: `${fName.toLowerCase()}.${lName.toLowerCase()}@workforce.com`,
+          roleId: roles['Worker'].id,
+          subRole: subRoleVal,
+          passwordHash: passwordHash,
+          status: Math.random() > 0.15 ? 'ACTIVE' : 'ON_LEAVE',
+          isActive: true,
+          isDeleted: false
+        }
+      });
+      users.push(dbUser);
+      createdExtra++;
+    }    console.log(`Successfully generated ${users.length} total users in DB.`);
 
     // 5. Seed Sales Orders spanning the last 1 year
     console.log('Generating Sales Orders (History of last 1 year)...');
